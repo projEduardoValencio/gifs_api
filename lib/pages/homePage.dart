@@ -10,6 +10,7 @@ import 'package:gifs_api/repo/urls.dart';
 import 'package:gifs_api/widgets/homePage_appBar.dart';
 import 'package:http/http.dart' as http;
 import 'package:share/share.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -115,10 +116,11 @@ class _HomePageState extends State<HomePage> {
           return GestureDetector(
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
-              child: Image.network(
-                snapshot.data['data'][index]["images"][pref]["url"],
+              child: FadeInImage.memoryNetwork(
+                image: snapshot.data['data'][index]["images"][pref]["url"],
                 height: 300.0,
                 fit: BoxFit.cover,
+                placeholder: kTransparentImage,
               ),
             ),
             //Open the GIF page view
