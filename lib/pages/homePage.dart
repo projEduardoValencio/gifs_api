@@ -9,6 +9,7 @@ import 'package:gifs_api/pages/gif_Page.dart';
 import 'package:gifs_api/repo/urls.dart';
 import 'package:gifs_api/widgets/homePage_appBar.dart';
 import 'package:http/http.dart' as http;
+import 'package:share/share.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   String? _search;
   int of = 0;
   //You can change this value
-  int columnsNumberGrid = 5;
+  int columnsNumberGrid = 3;
   //Set preview quality
   String pref = Quality().small();
 
@@ -120,6 +121,7 @@ class _HomePageState extends State<HomePage> {
                 fit: BoxFit.cover,
               ),
             ),
+            //Open the GIF page view
             onTap: () {
               Navigator.push(
                 context,
@@ -127,6 +129,10 @@ class _HomePageState extends State<HomePage> {
                   builder: (context) => GifPage(snapshot.data["data"][index]),
                 ),
               );
+            },
+            //Hold image to share function
+            onLongPress: () {
+              Share.share(snapshot.data['data'][index]["images"][pref]["url"]);
             },
           );
         } else {

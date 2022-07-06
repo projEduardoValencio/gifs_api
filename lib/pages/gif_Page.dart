@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:gifs_api/widgets/homePage_appBar.dart';
+import 'package:share/share.dart';
 
 class GifPage extends StatelessWidget {
   GifPage(this._gifData);
@@ -31,6 +32,12 @@ class GifPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
+            IconButton(
+                icon: Icon(Icons.share),
+                color: Colors.white,
+                onPressed: () {
+                  Share.share(_gifData['images']['original']['url']);
+                }),
           ],
         ),
       ),
